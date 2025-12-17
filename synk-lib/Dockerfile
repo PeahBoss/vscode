@@ -1,6 +1,5 @@
 FROM ubuntu:22.04
 
-# Устанавливаем зависимости без интерактивных вопросов
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
@@ -18,10 +17,8 @@ WORKDIR /app
 
 COPY . .
 
-# Создаем и переходим в директорию сборки
 RUN mkdir build && cd build && \
     cmake .. && \
     make
 
-# Запускаем тесты по умолчанию
 CMD ["./build/test/run_tests"]
